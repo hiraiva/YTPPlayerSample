@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="UTF-8">
+  <meta charset="UTF-8">
   <title>mb.YTPlayer sample</title>
-	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.js"></script>
-	<script type="text/javascript" src="inc/jquery.mb.YTPlayer.js"></script>
-	<link href="css/YTPlayer.css" media="all" rel="stylesheet" type="text/css">
+  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.js"></script>
+  <script type="text/javascript" src="inc/jquery.mb.YTPlayer.js"></script>
+  <link href="css/YTPlayer.css" media="all" rel="stylesheet" type="text/css">
   <script>
     $(function(){
       var list = [
@@ -28,7 +28,7 @@
         var ptn = /.+?\?vid=/;
         return (ptn.test(location.href)) ? location.href.replace(ptn, '') : null;
       }, vid = vidFromUrl() || list[Math.round(Math.random() * list.length)], $player = $("#bgndVideo");
-      $player.data("property", $player.data("property").replace("VID", vid));
+      $player.data("property", $player.data("property").replace("<VID>", vid));
       setTimeout(function() {
         $player.on("YTPStart", function() {
           var player = $player.get(0);
@@ -50,11 +50,11 @@
 </head>
 <body>
 <div id="wrapper" style="position: relative; padding: 30px 20px; z-index: 10">
-	<h1><span id="videoTitle"></span></h1>
-	<h2>ID: <span id="videoID"></span></h2>
+  <h1><span id="videoTitle"></span></h1>
+  <h2>ID: <span id="videoID"></span></h2>
   <h2>Duration: <span id="videoDuration"></span></h2>
   <h2>Views: <span id="viewCount"></span></h2>
   <p>"vid" in query is parsed as a video id</p>
 </div>
-<a id="bgndVideo" class="player" data-property="{videoURL: 'VID', showControls: false, containment: 'body', autoPlay: true, mute: false, loop: false, startAt: 0, opacity: 1}"></a>
+<a id="bgndVideo" class="player" data-property="{videoURL: '<VID>', showControls: false, containment: 'body', autoPlay: true, mute: false, loop: true, startAt: 0, opacity: 1}"></a>
 </html>
