@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+  <title>mb.YTPlayer sample</title>
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.js"></script>
+	<script type="text/javascript" src="inc/jquery.mb.YTPlayer.js"></script>
+	<link href="css/YTPlayer.css" media="all" rel="stylesheet" type="text/css">
+  <script>
+    $(function(){
+      var defaultAttr = {
+        containment: 'body',
+        showControls: true,
+        autoPlay: true,
+        loop: true,
+        vol: 50,
+        mute: false,
+        startAt: 0,
+        opacity: 1.0,
+        addRaster: false,
+        quality: 'default'
+      }, list = $.map([
+        {videoURL: "FlFMvPAg0YQ"},
+        {videoURL: "YCJ5MALUz5k"},
+        {videoURL: "tkSd4kwlJos"},
+        {videoURL: "mVOsCcu__u0"}
+      ], function(v){ return $.extend(v, defaultAttr); }), $player = $("#bgndVideo");
+      $player.mb_YTPlayer();
+      $player.YTPlaylist(list, true, function(video){
+         $("#videoID").text(video.videoData.id);
+         $("#videoTitle").text(video.videoData.title);
+         $("#videoDuration").text(jQuery.mbYTPlayer.formatTime(video.videoData.duration));
+         $("#viewCount").text(video.videoData.viewCount);
+      });
+      $(document.body).click(function(){ $player.playNext(); })
+    });
+  </script>
+</head>
+<body>
+<div id="wrapper" style="position:relative; padding:30px 20px; z-index:10">
+	<h1 style="color:white"><span id="videoTitle"></span></h1>
+	<h2 style="color:white">ID: <span id="videoID"></span></h2>
+  <h2 style="color:white">Duration: <span id="videoDuration"></span></h2>
+  <h2 style="color:white">Views: <span id="viewCount"></span></h2>
+</div>
+<a id="bgndVideo" class="player" data-property="{videoURL:'mVOsCcu__u0',">CKB</a>
+</html>
